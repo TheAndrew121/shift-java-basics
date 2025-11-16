@@ -5,9 +5,7 @@ import java.nio.charset.StandardCharsets;
 
 // задача №2
 public class MeasureAnimals {
-    static void main(String[] args) throws UnsupportedEncodingException {
-
-        PrintStream out = new PrintStream(System.out, true, StandardCharsets.UTF_8);
+    static void main(String[] args) {
 
         int boaLengthCm = 380;
 
@@ -23,9 +21,9 @@ public class MeasureAnimals {
 
 
         System.out.printf("Длина удава: %.2f%n", boaLengthM);
-        System.out.printf("%.2f%n" ,parrotHeightM);
-        System.out.printf("%.2f%n" ,monkeyHeightM);
-        System.out.printf("%.2f%n" ,elephantHeightM);
-        System.out.printf("%.2f%n" ,totalHeight);
+        System.out.printf("Длина попугая: %.2f%n" ,parrotHeightM);
+        System.out.printf("Длина мартышки: %.2f%n" ,monkeyHeightM);
+        System.out.printf("Длина слонёнка: %.2f%n" ,elephantHeightM);
+        System.out.printf("Сумма ростов: %.2f%n" ,totalHeight);
     }
 }
