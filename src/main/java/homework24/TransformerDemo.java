@@ -1,49 +1,70 @@
 package homework24;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class TransformerDemo {
-    static void main(String[] args) {
-        // создаём одного автобота и одного десептикона
-        Autobot bumblebee = new Autobot("Бамблби", "Автоботы");
-        Decepticon starscream = new Decepticon("Скандалист", "Десептиконы");
 
-        // действия автоботов
-        System.out.println("=== Возможности автобота ===");
-        bumblebee.run();
-        bumblebee.fire();
-        bumblebee.charge();
-        bumblebee.transform();
+    public static void main(String[] args) {
+        // Создаем HashMap для хранения информации о трансформерах по имени
+        Map<String, Transformer> transformers = new HashMap<>();
 
-        // свойства автоботов
-        System.out.println("\n=== Свойства автобота ===");
-        System.out.println("Имя: " + bumblebee.getName());
-        System.out.println("Команда: " + bumblebee.getTeamName());
-        System.out.println("Цвет глаз: " + bumblebee.getEyeColor());
-        System.out.println("Добрый?: " + bumblebee.isKindness());
+        // Создаем трансформеров
+        transformers.put("Bumblebee", new Autobot("Бамблби", "Chevrolet Camaro"));
+        transformers.put("Optimus Prime", new Autobot("Оптимус прайм", "тягач"));
+        transformers.put("Starscream", new Decepticon("Скандалист", "истребитель"));
+        transformers.put("Soundwave", new Decepticon("Саундвейв", "магнитофон"));
+        transformers.put("Megatron", new Decepticon("Мегатрон", "пушка"));
 
-        // действия десептиконов
-        System.out.println("\n=== Возможности десептикона ===");
-        starscream.run();
-        starscream.fire();
-        starscream.charge();
-        starscream.transform();
+        // объединенный вывод всех возможностей трансформеров
+        System.out.println("=== Возможности трансформеров ===");
+        transformers.values().forEach(t -> {
+            t.run();
+            t.fire();
+            t.charge();
+            t.transform();
+            System.out.println();
+        });
 
-        // свойства десептиконов
-        System.out.println("\n=== Свойства десептикона ===");
-        System.out.println("Имя: " + starscream.getName());
-        System.out.println("Команда: " + starscream.getTeamName());
-        System.out.println("Цвет глаз: " + starscream.getEyeColor());
-        System.out.println("Добрый?: " + starscream.isKindness());
+        // свойства всех трансформеров
+        System.out.println("=== Свойства трансформеров ===");
+        transformers.values().forEach(Transformer::displayProperties);
 
+        // Изменение формы трансформации
+        System.out.println("\n=== Трансформация ===");
+        transformers.get("Bumblebee").setTransformationForm("Volkswagen Beetle");
+        transformers.get("Starscream").setTransformationForm("бомбардировщик");
 
+        System.out.println("После трансформации:");
+        transformers.get("Bumblebee").transform();
+        transformers.get("Starscream").transform();
 
+        System.out.println("\n=== Трансформация ===");
+        transformers.get("Megatron").setTransformationForm("танк");
+        transformers.get("Optimus Prime").setTransformationForm("пожарная машина");
 
-        System.out.println("\n=== Трансформеры поменялись местами ===");
-        bumblebee.setKindness(false); // автобот стал злым
-        starscream.setKindness(true); // десептикон стал добрым
+        transformers.get("Megatron").transform();
+        transformers.get("Optimus Prime").transform();
 
-        System.out.println("Добрый?: " + bumblebee.isKindness());
-        System.out.println("Добрый?: " + starscream.isKindness());
+        // System.out.println("\n=== Трансформеры поменялись местами ===");
+        transformers.get("Bumblebee").setKindness(false);
+        transformers.get("Starscream").setKindness(true);
+        transformers.get("Megatron").setKindness(true);
+        transformers.get("Optimus Prime").setKindness(false);
 
+        //System.out.println("Бамблби добрый?: " + booleanToYesNo(transformers.get("Bumblebee").isKindness()));
+        //System.out.println("Is Starscream kind?: " + booleanToYesNo(transformers.get("Starscream").isKindness()));
+        //System.out.println("Is Megatron kind?: " + booleanToYesNo(transformers.get("Megatron").isKindness()));
 
+        // Финальные свойства возможно УБРАТЬ???
+        System.out.println("\n=== Свойства после трансформации и смены сторон ===");
+        transformers.values().forEach(Transformer::displayProperties);
     }
+
+    /*
+    private static String booleanToYesNo(boolean value) {
+        return value ? "Да" : "Нет";
+    }
+
+     */
 }

@@ -1,34 +1,23 @@
 package homework24;
 
 class Decepticon extends Transformer {
-    private String teamName;
-    private final String eyeColor = "красный";
-    private boolean kindness;
+    private static final String eyeColor = "красный";
 
-    public Decepticon(String name, String teamName) {
-        super(name);
-        this.teamName = teamName;
-        this.kindness = false;
+    public Decepticon(String name, String transformationForm) {
+        super(name, false, transformationForm); // Десептиконы по умолчанию злые
     }
 
-    public void transform() {
-        System.out.println(name + " трансформируется в наземный и воздушный транспорт, в оружие и технику");
+    public Decepticon(String name, String transformationForm, boolean kindness) {
+        super(name, kindness, transformationForm);
     }
 
+    @Override
     public String getTeamName() {
-        return teamName;
+        return "Десептиконы";
     }
 
+    @Override
     public String getEyeColor() {
         return eyeColor;
-    }
-
-    public boolean isKindness() {
-        return kindness;
-    }
-
-    // сеттер для kindness
-    public void setKindness(boolean kindness) {
-        this.kindness = kindness;
     }
 }

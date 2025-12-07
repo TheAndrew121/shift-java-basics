@@ -1,34 +1,20 @@
 package homework24;
 
 class Autobot extends Transformer {
-    private String teamName;
-    private final String eyeColor = "синий";
-    private boolean kindness;
+    private static final String eyeColor = "синий";
 
-    public Autobot(String name, String teamName) {
-        super(name);
-        this.teamName = teamName;
-        this.kindness = true; // по умолчанию true
+    public Autobot(String name, String transformationForm) {
+        super(name, true, transformationForm); // Автоботы по умолчанию добрые
     }
 
-    public void transform() {
-        System.out.println(name + " трансформируется в транспорт");
-    }
 
+    @Override
     public String getTeamName() {
-        return teamName;
+        return "Автоботы";
     }
 
+    @Override
     public String getEyeColor() {
         return eyeColor;
-    }
-
-    public boolean isKindness() {
-        return kindness;
-    }
-
-    // сеттер для kindness
-    public void setKindness(boolean kindness) {
-        this.kindness = kindness;
     }
 }
