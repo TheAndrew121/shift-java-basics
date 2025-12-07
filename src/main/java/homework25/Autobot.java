@@ -31,19 +31,20 @@ class Autobot extends Transformer implements Action {
         System.out.println(name + " бежит");
     }
 
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public String getEyeColor() {
-        return eyeColor;
-    }
-
-    public boolean isKindness() {
-        return kindness;
+    // переопределение метода showProperties
+    @Override
+    public void showProperties() {
+        super.showProperties();
+        System.out.println("Команда: " + teamName);
+        System.out.println("Цвет глаз: " + eyeColor);
+        System.out.println("Добрый?: " + getKindnessText());
     }
 
     public void setKindness(boolean kindness) {
         this.kindness = kindness;
+    }
+
+    public String getKindnessText() {
+        return kindness ? "да" : "нет";
     }
 }

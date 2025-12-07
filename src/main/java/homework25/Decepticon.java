@@ -4,16 +4,19 @@ class Decepticon extends Transformer implements Action {
     private String teamName;
     private final String eyeColor = "красный";
     private boolean kindness;
+    private String transformationType; // тип трансформации
 
-    public Decepticon(String name, String teamName) {
+    // конструктор с выбором типа трансформации
+    public Decepticon(String name, String teamName, String transformationType) {
         super(name);
         this.teamName = teamName;
         this.kindness = false;
+        this.transformationType = transformationType;
     }
 
     // реализация абстрактного метода transform
     public void transform() {
-        System.out.println(name + " трансформируется в наземный и воздушный транспорт, в оружие и технику");
+        System.out.println(name + " трансформируется в " + transformationType);
     }
 
     // реализация методов интерфейса Action
@@ -31,19 +34,22 @@ class Decepticon extends Transformer implements Action {
         System.out.println(name + " бежит");
     }
 
-    public String getTeamName() {
-        return teamName;
-    }
-
-    public String getEyeColor() {
-        return eyeColor;
-    }
-
-    public boolean isKindness() {
-        return kindness;
+    // переопределение метода showProperties
+    @Override
+    public void showProperties() {
+        super.showProperties();
+        System.out.println("Команда: " + teamName);
+        System.out.println("Цвет глаз: " + eyeColor);
+        System.out.println("Добрый?: " + getKindnessText());
+        System.out.println("Тип трансформации: " + transformationType);
     }
 
     public void setKindness(boolean kindness) {
         this.kindness = kindness;
     }
+
+    public String getKindnessText() {
+        return kindness ? "да" : "нет";
+    }
+
 }
