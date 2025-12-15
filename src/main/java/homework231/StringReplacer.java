@@ -10,36 +10,34 @@ public class StringReplacer {
         System.out.println("Введите строку:");
         String inputString = scanner.nextLine();
 
-        char searchSymbol = 0;
-        boolean validSymbol = false;
+        String searchSymbolStr;
 
-        while (!validSymbol) {
+        while (true) {
             System.out.println("Введите символ для поиска и замены:");
-            String symbolInput = scanner.nextLine();
+            searchSymbolStr = scanner.nextLine();
 
-            if (symbolInput.length() != 1) {
+            if (searchSymbolStr.length() != 1) {
                 System.out.println("Нужно ввести ровно один символ");
                 continue;
             }
 
-            searchSymbol = symbolInput.charAt(0);
-            if (searchSymbol == ' ') {
+            if (searchSymbolStr.charAt(0) == ' ') {
                 System.out.println("Нельзя указывать пробел в качестве символа для поиска");
                 continue;
             }
 
-            validSymbol = true;
+            break;
         }
 
-        String afterReplacement = inputString.replace(searchSymbol, ' ');
+        char searchSymbol = searchSymbolStr.charAt(0);
+        String outputString = inputString.replace(searchSymbol, ' ');
 
-        String resultString = normalizeString(afterReplacement);
+        outputString = deleteExtraSpaces(outputString);
 
         System.out.println("\n--- Результат ---");
-        // вывод исходной и результирующей строки как одного объекта
-        System.out.println(inputString + "\n" + resultString);
+        System.out.println(inputString + "\n" + outputString);
 
-        if (inputString.equals(resultString)) {
+        if (inputString.equals(outputString)) {
             System.out.println("\nСтрока не изменилась после преобразований.");
         } else {
             System.out.println("\nСтрока была изменена.");
@@ -48,11 +46,11 @@ public class StringReplacer {
         scanner.close();
     }
 
-    private static String normalizeString(String str) {
+    private static String deleteExtraSpaces(String str) {
         if (str == null || str.trim().isEmpty()) {
             return "";
         }
-        // убираем пробелы, заменяем множественные пробелы на одиночные
-        return str.trim().replaceAll("\\s+", " ");
+        // теперь только пробелы, а не все пробельные символы
+        return str.trim().replaceAll(" +", " ");
     }
 }
